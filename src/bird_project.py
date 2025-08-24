@@ -27,30 +27,57 @@ class Bird:
         logging.info(f"{self.name} está cantando.")
         print(f"{self.name}: ¡Pío pío!")
 
-
     def birthday(self):
+        """
+        Aumenta la edad del ave en 1 año.
+        """
         self.age += 1
         logging.info(f"{self.name} ahora tiene {self.age} años.")
 
-# Ejemplo de herencia: Eagle hereda de Bird
+    def migrate(self, destination: str):
+        """
+        Método que representa la migración del ave a otro lugar.
+        """
+        logging.info(f"{self.name} está migrando hacia {destination}.")
+        print(f"{self.name} está migrando hacia {destination}.")
+
+
 class Eagle(Bird):
     """
     Clase Eagle hereda de Bird.
-    En POO, la herencia permite que una clase hija obtenga atributos y métodos de la clase padre.
+    Ahora tiene un atributo extra 'altitude' que indica la altura de vuelo.
     """
-    def __init__(self, name: str, age: int):
-        # Llama al constructor de Bird con especie fija "Águila"
+    def __init__(self, name: str, age: int, altitude: int = 0):
         super().__init__(name, age, "Águila")
-        logging.info(f"Se ha creado un águila llamada {self.name}.")
+        self.altitude = altitude
+        logging.info(f"Se ha creado un águila llamada {self.name} con altitud inicial de {self.altitude} metros.")
 
-    def fly(self):
+    def fly(self, increase: int = 10):
         """
-        Método propio de Eagle, además de los heredados de Bird.
+        Aumenta la altitud de vuelo del águila.
         """
-        logging.info(f"{self.name} está volando alto.")
-        print(f"{self.name}: ¡Estoy volando alto!")
+        self.altitude += increase
+        logging.info(f"{self.name} está volando a {self.altitude} metros.")
+        print(f"{self.name}: ¡Estoy volando a {self.altitude} metros!")
+
+    def show_altitude(self):
+        """
+        Muestra la altitud actual de vuelo.
+        """
+        print(f"{self.name} está volando a {self.altitude} metros.")
 
 if __name__ == "__main__":
-    Eagle1 = Eagle("Pablo",6)
+    # Crear instancias de Bird y Eagle
+    bird1 = Bird("Paco", 2, "Periquito")
+    eagle1 = Eagle("Aquila", 5)
 
-    Eagle1.birthday()
+    # Llamar métodos de Bird
+    bird1.sing()
+    bird1.birthday()
+    bird1.migrate("Sudamérica")
+
+    # Llamar métodos de Eagle
+    eagle1.sing()  # Método heredado de Bird
+    eagle1.fly(50)
+    eagle1.show_altitude()
+    eagle1.birthday()

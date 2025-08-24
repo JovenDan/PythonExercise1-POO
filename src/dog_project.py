@@ -34,6 +34,21 @@ class Dog:
         """
         self.age += 1
         logging.info(f"{self.name} ahora tiene {self.age} años.")
+        
+    def fetch(self, item: str):
+        logging.info(f"{self.name} está trayendo {item}.")
+        print(f"{self.name} ha traído {item}.")
+        
+    def compare_age(self, other_dog):
+        """
+        Compara la edad de este perro con otro perro.
+        """
+        if self.age > other_dog.age:
+            print(f"{self.name} es mayor que {other_dog.name}.")
+        elif self.age < other_dog.age:
+            print(f"{self.name} es menor que {other_dog.name}.")
+        else:
+            print(f"{self.name} y {other_dog.name} tienen la misma edad.")
 
 if __name__ == "__main__":
     # Crear instancias de la clase Dog
@@ -47,7 +62,14 @@ if __name__ == "__main__":
     # Celebrar cumpleaños
     dog1.birthday()
     dog2.birthday()
+    
+    # Hacer que los perros traigan objetos
+    dog1.fetch("la pelota")
+    dog2.fetch("el frisbee")
 
     # Mostrar atributos
     print(f"{dog1.name} tiene {dog1.age} años.")
     print(f"{dog2.name} tiene {dog2.age} años.")
+    
+    dog1.compare_age(dog2)  
+    dog2.compare_age(dog1)  
